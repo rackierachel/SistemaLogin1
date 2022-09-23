@@ -1,16 +1,8 @@
 
 import static java.lang.Character.isDigit;
+import static java.lang.Character.isLetter;
 import javax.swing.JOptionPane;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author MarcoTereso
- */
 public class FormRegisto extends javax.swing.JFrame {
 
     /** Creates new form FormRegisto */
@@ -48,15 +40,10 @@ public class FormRegisto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Formulário de Registo de Utilizadores");
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
+        jButton1.setBackground(new java.awt.Color(204, 0, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Sair");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Nome");
@@ -76,7 +63,24 @@ public class FormRegisto extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Reescreva Password");
 
-        jButton2.setBackground(new java.awt.Color(153, 204, 0));
+        ctxRePassword.setBackground(new java.awt.Color(204, 0, 204));
+
+        ctxPassword.setBackground(new java.awt.Color(204, 0, 204));
+
+        ctxTelefone.setBackground(new java.awt.Color(204, 0, 204));
+
+        ctxMorada.setBackground(new java.awt.Color(204, 0, 204));
+
+        ctxEmail.setBackground(new java.awt.Color(204, 0, 204));
+
+        ctxNome.setBackground(new java.awt.Color(204, 0, 204));
+        ctxNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxNomeActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(204, 0, 204));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton2.setText("VALIDAR DADOS");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +94,13 @@ public class FormRegisto extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("NIF");
+
+        ctxNif.setBackground(new java.awt.Color(204, 0, 204));
+        ctxNif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxNifActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,17 +186,21 @@ public class FormRegisto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Login log = new Login();
-        this.dispose();  //fecha a janela atual
-        log.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void mensagemErro(String erro){
         JOptionPane.showMessageDialog(null, erro, "Erro validação", JOptionPane.ERROR_MESSAGE);
     }
+   
+                                           
+
     
-    
+    private void ctxNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxNomeActionPerformed
+        
+    }//GEN-LAST:event_ctxNomeActionPerformed
+
+    private void ctxNifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxNifActionPerformed
+
+    }//GEN-LAST:event_ctxNifActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String nome = ctxNome.getText();
         String email = ctxEmail.getText();
@@ -194,26 +209,30 @@ public class FormRegisto extends javax.swing.JFrame {
         String nif = ctxNif.getText();
         String pass = ctxPassword.getText();
         String rePass = ctxRePassword.getText();
-        if(nome.equals("") || email.equals("") || morada.equals("") ||
-                telefone.equals("") || nif.equals("") || pass.equals("")
-                || rePass.equals("")){
-            mensagemErro("Preencha todos os campos!");
+        if(nome.equals("")|| email.equals("")|| morada.equals("")|| telefone.equals("")|| nif.equals("") || pass.equals("") || rePass.equals("")){
+            mensagemErro("Preencha todos os campos");   
         }else{
             if(!validaCampoNumerico(telefone)){
-                mensagemErro("O campo telefone tem "
-                        + "de ser numérico e ter 9 digitos");
+                mensagemErro("O campo telefone tem de ser numerico e ter 9 digitos");   
             }
+            if(!validaNif(nif)){
+                mensagemErro("O campo nif tem de ser numerico e ter 9 digitos");
         }
-        
-        
-        
-        
-       
-        
-        
-        
-        
-        
+            if(!validaNome(nome)){
+                mensagemErro("O campo nome tem que conter letras e ter mais de 2 letras");
+        }
+            if(!validaEmail(email)){
+                mensagemErro("O campo email tem que conter um @ e deve conter um . depois do @");
+        }
+            if(!validaPass(pass)){
+                mensagemErro("O campo password tem que conter pelo menos uma letra maiuscula e uma letra minuscula, ter mais de 8 caracteres, pelo menos um algarismo e pelo menos um caracter especial");
+        }
+            if(!validaMorada(morada)){
+                mensagemErro("O campo morada tem que conter letras e ter mais de 5 letras");
+            }
+           
+            
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -286,5 +305,146 @@ public class FormRegisto extends javax.swing.JFrame {
                return false;
        }
        return true;
+    
+       
     }
-}
+
+    private boolean validaNif(String nif) {
+        int x,contador=0, ni = nif.length();
+       char c;
+       if(ni!=9)
+            return false; 
+       else{
+           for(x=0;x<ni;x++){
+               c = nif.charAt(x);
+               if(isDigit(c))
+                   contador++;
+           }
+           if(ni!=contador)
+               return false;
+       }
+       return true;
+    }
+
+    private boolean validaMorada(String morada) {
+       int y, contador = 0, mo = morada.length();
+       char c;
+       if(mo<5)
+           return false;
+       else{
+           for (y=0;y<mo;y++){
+               c = morada.charAt(y);
+               if(isLetter(c))
+                   contador++;
+           }
+           if (mo!=contador)
+               return false;
+       }
+       return true;
+    }
+
+    private boolean validaNome(String nome) {
+        int y, contador = 0, n = nome.length();
+        char c;
+        if(n<2)
+            return false;
+        else{
+            for (y=0; y<n;y++){
+                c = nome.charAt(y);
+                if(isLetter(c))
+                    contador++;
+                
+            } 
+            if (n!=contador)
+                return false;
+        }
+        return true;
+    }
+
+   
+    
+    
+    
+    
+    
+    
+    private boolean validaPass(String pass) {
+        int x,  p = pass.length() ; 
+        int nrs=0, minusculas=0, maiusculas=0,caract=0;
+        char c;
+        String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?"; 
+        
+        for (x = 0; x < p; x++) { 
+        c = pass.charAt(x); 
+        if(p<8){ 
+            return false;
+        }
+         if (Character.isDigit(c)) { 
+             nrs++;
+            //boolean numberPresent = true; 
+        } 
+        if (Character.isUpperCase(c)) { 
+            maiusculas++;
+            //boolean upperCasePresent = true; 
+        } 
+        if (Character.isLowerCase(c)) { 
+            minusculas++;
+            //boolean lowerCasePresent = true; 
+        }  
+        else if (specialChars.contains(String.valueOf(c))) { 
+            caract++;
+           // boolean specialCharacterPresent = true; 
+        } 
+           /* boolean lowerCasePresent = false;
+            boolean numberPresent = false;
+            boolean specialCharacterPresent = false;
+            boolean upperCasePresent = false;   */
+     if(nrs<=1==true && maiusculas<=1==true && minusculas<=1==true && caract<=8==true){ 
+         return true;      
+     }
+    }    
+        return false;
+    }
+
+    private boolean validaEmail(String email) {
+        int e = email.length();
+        if (email.indexOf("@") >= 1 ) {
+        if (email.indexOf(".") >= email.indexOf("@")+2)
+        return true;    
+       if ((email.indexOf("@")+email.indexOf(".") - email.length()) >= 1 )
+         System.out.print("Email aprovado" + (email.length() - (email.indexOf("@")+email.indexOf("."))));
+       }
+        return false; 
+    }
+    
+        
+        
+    }   
+
+
+ 
+        
+    
+
+
+    
+
+
+     
+        
+           
+          
+  
+   
+
+       
+ 
+
+
+        
+    
+    
+         
+  
+    
+
