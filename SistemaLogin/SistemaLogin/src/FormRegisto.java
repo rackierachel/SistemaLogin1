@@ -231,14 +231,15 @@ public class FormRegisto extends javax.swing.JFrame {
                 mensagemErro("O campo morada tem que conter letras e ter mais de 5 letras");
             }
            
-            
+           if (!pass.equals(rePass)){
+            mensagemErro("As passawords não coincidem");  
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -370,7 +371,7 @@ public class FormRegisto extends javax.swing.JFrame {
     
     private boolean validaPass(String pass) {
         int x,  p = pass.length() ; 
-        int nrs=0, minusculas=0, maiusculas=0,caract=0;
+        int n=0, minusculas=0, maiusculas=0,caract=0;
         char c;
         String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?"; 
         
@@ -380,26 +381,23 @@ public class FormRegisto extends javax.swing.JFrame {
             return false;
         }
          if (Character.isDigit(c)) { 
-             nrs++;
-            //boolean numberPresent = true; 
+             n++;
+          
         } 
         if (Character.isUpperCase(c)) { 
             maiusculas++;
-            //boolean upperCasePresent = true; 
+           
         } 
         if (Character.isLowerCase(c)) { 
             minusculas++;
-            //boolean lowerCasePresent = true; 
+        
         }  
         else if (specialChars.contains(String.valueOf(c))) { 
             caract++;
-           // boolean specialCharacterPresent = true; 
+         
         } 
-           /* boolean lowerCasePresent = false;
-            boolean numberPresent = false;
-            boolean specialCharacterPresent = false;
-            boolean upperCasePresent = false;   */
-     if(nrs<=1==true && maiusculas<=1==true && minusculas<=1==true && caract<=8==true){ 
+
+     if(n<=1==true && maiusculas<=1==true && minusculas<=1==true && caract<=8==true){ 
          return true;      
      }
     }    
